@@ -6,6 +6,7 @@ final class ContainTest: XCTestCase, XCTestCaseProvider {
     static var allTests: [(String, (ContainTest) -> () throws -> Void)] {
         return [
             ("testContain", testContain),
+            ("testContainKeys", testContainKeys),
             ("testContainSubstring", testContainSubstring),
             ("testContainObjCSubstring", testContainObjCSubstring),
             ("testVariadicArguments", testVariadicArguments),
@@ -39,6 +40,11 @@ final class ContainTest: XCTestCase, XCTestCaseProvider {
         failsWithErrorMessageForNil("expected to not contain <b>, got <nil>") {
             expect(nil as [String]?).toNot(contain("b"))
         }
+    }
+
+    func testContainKeys() {
+        let foo = ["a": 1, "b": 2]
+        expect(foo.values).to(contain(1, 2))
     }
 
     func testContainSubstring() {
